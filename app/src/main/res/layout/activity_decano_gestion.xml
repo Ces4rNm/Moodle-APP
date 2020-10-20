@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".decano_gestion">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="294dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="53dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btn_crear_docente"
+        android:layout_width="213dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="45dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="crear_docente"
+        android:text="Crear nuevo docente"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btn_listar_docentes"
+        android:layout_width="213dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="listar_docentes"
+        android:text="Listar docentes"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
+
+    <Button
+        android:id="@+id/btn_crear_asignatura"
+        android:layout_width="213dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="crear_asignatura"
+        android:text="Crear Asignatura"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_listar_docentes" />
+
+    <Button
+        android:id="@+id/btn_listar_asignatura"
+        android:layout_width="213dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="listar_asignatura"
+        android:text="Listar Asignatura"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_crear_asignatura" />
+
+    <Button
+        android:id="@+id/btn_listar_clases"
+        android:layout_width="213dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="listar_clases"
+        android:text="Listar Clases"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_listar_asignatura" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

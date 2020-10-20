@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".crear_docente">
+
+    <TextView
+        android:id="@+id/text_crear_docente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="CREAR DOCENTE"
+        android:textColor="#707070"
+        android:textColorHighlight="#707070"
+        android:textColorLink="#707070"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="345dp"
+        android:layout_height="440dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_crear_docente">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_docente_documento"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Documento"
+                android:ems="10"
+                android:hint="Documento"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/et_docente_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Nombre"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_docente_edad"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Edad"
+                android:ems="10"
+                android:hint="Edad"
+                android:inputType="number" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupSexo"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginTop="17dp">
+
+                <RadioButton
+                    android:id="@+id/rbnM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Masculino" />
+
+                <RadioButton
+                    android:id="@+id/rbnF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Femenino" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/et_docente_estudio"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Estudio"
+                android:ems="10"
+                android:hint="Estudio"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_docente_falcultad"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Falcultad"
+                android:ems="10"
+                android:hint="Falcultad"
+                android:inputType="textPersonName" />
+
+
+            <EditText
+                android:id="@+id/et_docente_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Usuario"
+                android:ems="10"
+                android:hint="Usuario"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/et_docente_password"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="17dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Contraseña"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_registrar"
+        android:layout_width="166dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:background="#BF0411"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="registrarDocente"
+        android:text="Registrar Docente"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
