@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!correo.equals("") || !pass.equals("")) {
             Cursor fila = bd.rawQuery("select rol,ID_usuario from Usuario where usuario='"+correo+"' and password='"+pass+"';", null);
+
             if (fila.moveToFirst()) {
                 if (fila.getString(0).equals("1")) {
                     //  Decano
