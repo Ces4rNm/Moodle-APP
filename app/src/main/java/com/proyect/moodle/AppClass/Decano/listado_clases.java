@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.clase_modelo;
+import com.proyect.moodle.rv_listado_clases_adaptador;
 
 import java.util.ArrayList;
 import java.util.List;

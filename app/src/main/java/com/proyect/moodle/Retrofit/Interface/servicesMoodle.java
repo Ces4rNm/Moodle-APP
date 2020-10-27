@@ -1,6 +1,6 @@
-package com.proyect.moodle.retrofit.Interface;
+package com.proyect.moodle.Retrofit.Interface;
 
-import com.proyect.moodle.retrofit.Model.validacionUsuario;
+import com.proyect.moodle.Retrofit.Model.validacionUsuario;
 
 import java.util.List;
 

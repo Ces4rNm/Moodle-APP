@@ -4,92 +4,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".decano_gestion">
+    android:background="#E6E6E6"
+    tools:context=".AppClass.Decano.decano_gestion">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="294dp"
-        android:layout_height="121dp"
-        android:layout_marginTop="53dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        android:id="@+id/ivOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/ic_settings" />
 
-    <Button
-        android:id="@+id/btn_crear_docente"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="45dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="crear_docente"
-        android:text="Crear nuevo docente"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
+    <ImageView
+        android:id="@+id/ivExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="53dp"
+        android:elevation="10dp"
+        android:textAlignment="center"
+        app:cardCornerRadius="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/btn_listar_docentes"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="listar_docentes"
-        android:text="Listar docentes"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        <ImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:background="#fff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_account" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvRol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Administrador"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <Button
-        android:id="@+id/btn_crear_asignatura"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="crear_asignatura"
-        android:text="Crear Asignatura"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Cesar Nuñez Mariño"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRol" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="328dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_listar_docentes" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/btn_listar_asignatura"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="listar_asignatura"
-        android:text="Listar Asignatura"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_crear_asignatura" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_listar_clases"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="listar_clases"
-        android:text="Listar Clases"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_listar_asignatura" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="#555" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#E6E6E6"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Docente"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_crear_docente"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="crear_docente"
+                android:padding="10dp"
+                android:text="Crear nuevo"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
+
+
+            <Button
+                android:id="@+id/btn_listar_docentes"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="listar_docentes"
+                android:padding="10dp"
+                android:text="Listar Todos"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="#555" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#E6E6E6"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Asignatura"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_crear_asignatura"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="crear_asignatura"
+                android:padding="10dp"
+                android:text="Crear Nueva"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_listar_docentes" />
+
+            <Button
+                android:id="@+id/btn_listar_asignatura"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="listar_asignatura"
+                android:padding="10dp"
+                android:text="Listar Todas"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_crear_asignatura" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="#555" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#E6E6E6"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Clases"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_listar_clases"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="listar_clases"
+                android:padding="10dp"
+                android:text="Listar Todas"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_listar_asignatura"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

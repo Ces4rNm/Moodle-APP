@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,15 +7,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class crear_horario extends AppCompatActivity {
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
@@ -128,7 +129,7 @@ public class crear_horario extends AppCompatActivity {
             Toast.makeText(this, "Horario creado con exito", Toast.LENGTH_SHORT).show();
 
 
-            Intent i = new Intent(this, docente_gestiona.class);
+            Intent i = new Intent(this, asignatura_gestiona.class);
                     i.putExtra("ID_usuario", getIntent().getExtras().getString("ID_usuario"));
                     i.putExtra("nombre", getIntent().getExtras().getString("nombre"));
                     i.putExtra("facultad", getIntent().getExtras().getString("facultad"));

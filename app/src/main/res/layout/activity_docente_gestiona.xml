@@ -4,49 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".docente_gestiona">
-    <TextView
-        android:id="@+id/text_docente_gestiona"
+    tools:context=".AppClass.Docente.docente_gestion">
+    <ImageView
+        android:id="@+id/ivOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto_bold"
-        android:lineSpacingExtra="12sp"
-        android:text="Titulo"
-        android:textAlignment="center"
-        android:textColor="#707070"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <Button
-        android:id="@+id/btn_asignar_asignatura"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="24dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="crear_horario"
-        android:text="Matricular Asignatura"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_docente_gestiona" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_asignar_asignaturas"
-        android:layout_width="395dp"
-        android:layout_height="446dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginRight="6dp"
+    <ImageView
+        android:id="@+id/ivExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="53dp"
+        android:elevation="10dp"
+        android:textAlignment="center"
+        app:cardCornerRadius="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_asignar_asignatura" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:background="#fff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_account" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvRol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Administrador"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Cesar Nuñez Mariño"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRol" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="328dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="#555" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#E6E6E6"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Horario"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_crear_docente"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="listar_horario"
+                android:padding="10dp"
+                android:text="Listar horario del día"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
+
+
+            <Button
+                android:id="@+id/btn_listar_docentes"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="filtrar_todos"
+                android:padding="10dp"
+                android:text="Filtrar todos los horarios"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

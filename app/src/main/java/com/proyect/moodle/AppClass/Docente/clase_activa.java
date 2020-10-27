@@ -1,14 +1,15 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Docente;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 

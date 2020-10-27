@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
+import com.proyect.moodle.AppClass.Docente.clase_activa;
+import com.proyect.moodle.AppClass.Docente.vista_dia;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 

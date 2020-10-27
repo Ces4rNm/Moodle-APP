@@ -1,4 +1,4 @@
-package com.proyect.moodle.retrofit.Model;
+package com.proyect.moodle.Retrofit.Model;
 
 
 public class validacionUsuario {

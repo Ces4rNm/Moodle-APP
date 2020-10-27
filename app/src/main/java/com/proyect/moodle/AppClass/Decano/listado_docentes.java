@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.materia_modelo;
+import com.proyect.moodle.rv_listado_docentes_adaptador;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class listado_docentes extends AppCompatActivity {
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
 
     public void horario_docente(View view) {
-        Intent i = new Intent(this, docente_gestiona.class );
+        Intent i = new Intent(this, asignatura_gestiona.class );
         i.putExtra("ID_usuario", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getHora());
         i.putExtra("nombre", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getNombre());
         i.putExtra("facultad", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getSalon());

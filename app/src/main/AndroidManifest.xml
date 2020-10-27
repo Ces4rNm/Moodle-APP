@@ -14,22 +14,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".listado_clases"></activity>
-        <activity android:name=".crear_horario" />
-        <activity android:name=".docente_gestiona" />
-        <activity android:name=".listar_asignaturas" />
-        <activity android:name=".crear_asignatura" />
-        <activity android:name=".listado_docentes" />
-        <activity android:name=".crear_docente" />
-        <activity android:name=".decano_gestion" />
+        <activity android:name=".AppClass.Docente.filtrar_horario"></activity>
+        <activity android:name=".AppClass.Decano.asignatura_gestiona" />
+        <activity android:name=".AppClass.Decano.listado_clases" />
+        <activity android:name=".AppClass.Decano.crear_horario" />
+        <activity android:name=".AppClass.Docente.docente_gestion" />
+        <activity android:name=".AppClass.Decano.listar_asignaturas" />
+        <activity android:name=".AppClass.Decano.crear_asignatura" />
+        <activity android:name=".AppClass.Decano.listado_docentes" />
+        <activity android:name=".AppClass.Decano.crear_docente" />
+        <activity
+            android:name=".AppClass.Decano.decano_gestion"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".clase_gestion" />
-        <activity android:name=".clase_activa" />
+        <activity
+            android:name=".AppClass.Docente.clase_activa"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".vista_semestre" />
         <activity android:name=".vista_semana" />
-        <activity android:name=".vista_dia" />
-        <activity android:name=".confirmar_gps" />
-        <activity android:name=".verificar_gps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".AppClass.Docente.vista_dia" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

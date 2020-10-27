@@ -5,13 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.proyect.moodle.AppClass.Decano.decano_gestion;
+import com.proyect.moodle.AppClass.Docente.docente_gestion;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,13 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
                     if (enabled) {
-                        Intent i = new Intent(this, confirmar_gps.class );
+                        Intent i = new Intent(this, docente_gestion.class );
                         i.putExtra("ID_usuario", fila.getString(1));
                         startActivity(i);
                     } else{
-                        Intent i = new Intent(this, verificar_gps.class );
-                        i.putExtra("ID_usuario", fila.getString(1));
-                        startActivity(i);
+                        Toast.makeText(getApplicationContext(),"Por favor, active el GPS para iniciar sesión", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(this, "Error, ROL no definido:"+fila.getString(0),Toast.LENGTH_SHORT).show();

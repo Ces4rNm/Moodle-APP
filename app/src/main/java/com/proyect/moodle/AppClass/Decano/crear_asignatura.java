@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 public class crear_asignatura extends AppCompatActivity {
     EditText et_nombre_asignatura, et_credito_asignatura;

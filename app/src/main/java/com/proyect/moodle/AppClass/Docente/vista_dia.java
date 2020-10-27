@@ -1,13 +1,20 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Docente;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.proyect.moodle.MainActivity;
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.clase_gestion;
+import com.proyect.moodle.materia_modelo;
+import com.proyect.moodle.rv_materias_adaptador;
+import com.proyect.moodle.vista_semana;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

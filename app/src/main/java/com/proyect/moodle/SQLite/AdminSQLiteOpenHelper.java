@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.SQLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

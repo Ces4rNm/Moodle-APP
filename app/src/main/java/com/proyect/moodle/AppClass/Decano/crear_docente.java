@@ -1,17 +1,18 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 public class crear_docente extends AppCompatActivity {
     EditText et_docente_ID_usuario,et_docente_nombre, et_docente_edad, et_docente_estudio, et_docente_usuario, et_docente_password, et_docente_falcultad;

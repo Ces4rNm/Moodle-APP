@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".listado_clases">
+    tools:context=".AppClass.Decano.listado_clases">
     <TextView
         android:id="@+id/text_titulo_listado_clase"
         android:layout_width="wrap_content"

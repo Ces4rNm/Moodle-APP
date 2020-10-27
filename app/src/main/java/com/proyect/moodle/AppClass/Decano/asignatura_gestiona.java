@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,12 +10,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.materia_modelo;
+import com.proyect.moodle.rv_horario_docente_adaptador;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class docente_gestiona extends AppCompatActivity {
+public class asignatura_gestiona extends AppCompatActivity {
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
 
     private RecyclerView rv_listado_horario;
@@ -24,7 +28,7 @@ public class docente_gestiona extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_docente_gestiona);
+        setContentView(R.layout.activity_asignatura_gestiona);
 
         TextView tv_titulo = findViewById(R.id.text_docente_gestiona);
         tv_titulo.setText(getIntent().getExtras().getString("nombre")+" - "+getIntent().getExtras().getString("facultad"));
@@ -46,8 +50,8 @@ public class docente_gestiona extends AppCompatActivity {
     public List<materia_modelo> obtener_horarios() {
         SQLiteDatabase bd = admin.getWritableDatabase();
         Cursor filas = bd.rawQuery("select b.dia_semana, b.hora, c.nombre " +
-                                        "from Usuario a, Horario b, Asignatura c " +
-                                        "where a.ID_usuario=b.ID_docente and b.cod_asignatura=c.cod_asignatura and a.ID_usuario="+getIntent().getExtras().getString("ID_usuario")+";", null);
+                "from Usuario a, Horario b, Asignatura c " +
+                "where a.ID_usuario=b.ID_docente and b.cod_asignatura=c.cod_asignatura and a.ID_usuario="+getIntent().getExtras().getString("ID_usuario")+";", null);
         List<materia_modelo> docentes = new ArrayList<>();
         if(filas.moveToFirst()) {
             do {
@@ -60,7 +64,7 @@ public class docente_gestiona extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(docente_gestiona.this, listado_docentes.class));
+        startActivity(new Intent(asignatura_gestiona.this, listado_docentes.class));
         finish();
 
     }
