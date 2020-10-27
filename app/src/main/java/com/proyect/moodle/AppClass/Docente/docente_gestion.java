@@ -18,7 +18,7 @@ public class docente_gestion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_docente_gestiona);
+        setContentView(R.layout.activity_docente_gestion);
 
         vibe = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
 

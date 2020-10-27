@@ -42,6 +42,11 @@ public class decano_gestion extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void matricular_docentes(View view) {
+        Intent i = new Intent(this, listado_docentes.class );
+        startActivity(i);
+    }
+
     public void crear_asignatura(View view) {
         Intent i = new Intent(this, crear_asignatura.class );
         startActivity(i);

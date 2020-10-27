@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.AppClass.Docente;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.proyect.moodle.AppClass.Docente.clase_activa;
-import com.proyect.moodle.AppClass.Docente.vista_dia;
+import com.proyect.moodle.R;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -110,12 +109,13 @@ public class clase_gestion extends AppCompatActivity {
         tv_semana.setText(semanaNombre);
     }
 
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(clase_gestion.this, MainActivity.class));
+        Intent i = new Intent(this, docente_gestion.class );
+        i.putExtra("ID_usuario", ID_docente);
+        i.putExtra("validadorSemana", "0");
+        startActivity(i);
         finish();
-
     }
 
     public void gestionar_clase(int ID_docente, int cod_asignatura, String descripcion, int asistencia_profesor, int estado) {

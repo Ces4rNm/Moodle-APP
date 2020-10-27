@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.proyect.moodle.MainActivity;
 import com.proyect.moodle.R;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
-import com.proyect.moodle.clase_gestion;
 import com.proyect.moodle.materia_modelo;
 import com.proyect.moodle.rv_materias_adaptador;
 import com.proyect.moodle.vista_semana;
@@ -26,7 +24,7 @@ import java.util.List;
 
 public class vista_dia extends AppCompatActivity {
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
-    String dia = "", semestre = "2020 - 1";
+    String dia = "", semestre = "2020 - 2";
 
     public void ver_semana(View view) {
         Intent i = new Intent(this, vista_semana.class );
@@ -34,15 +32,6 @@ public class vista_dia extends AppCompatActivity {
         i.putExtra("ID_usuario", getIntent().getExtras().getString("ID_usuario"));
         i.putExtra("semestre", semestre);
         startActivity(i);
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        startActivity(new Intent(vista_dia.this, MainActivity.class));
-        finish();
-
     }
 
     public void gestionar_clase(View view) {
@@ -144,5 +133,13 @@ public class vista_dia extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No tiene clases matriculadas hoy: "+dia+" ("+semestre+")", Toast.LENGTH_SHORT).show();
         }
         return materia;
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, docente_gestion.class );
+        i.putExtra("ID_usuario", getIntent().getExtras().getString("ID_usuario"));
+        startActivity(i);
+        finish();
     }
 }

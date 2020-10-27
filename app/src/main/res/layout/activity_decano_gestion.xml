@@ -160,6 +160,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
 
+            <Button
+                android:id="@+id/btn_matricular_docentes"
+                android:layout_width="328dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/background_light"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="0dp"
+                android:onClick="matricular_docentes"
+                android:padding="10dp"
+                android:text="Matricular"
+                android:textAlignment="viewStart"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_crear_docente" />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

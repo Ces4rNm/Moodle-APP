@@ -60,21 +60,4 @@ public class asignatura_gestiona extends AppCompatActivity {
         }
         return docentes;
     }
-
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        startActivity(new Intent(asignatura_gestiona.this, listado_docentes.class));
-        finish();
-
-    }
-
-    public void crear_horario(View view) {
-        Intent i = new Intent(this, crear_horario.class );
-        i.putExtra("ID_usuario", getIntent().getExtras().getString("ID_usuario"));
-        i.putExtra("nombre", getIntent().getExtras().getString("nombre"));
-        i.putExtra("facultad", getIntent().getExtras().getString("facultad"));
-        startActivity(i);
-
-    }
 }

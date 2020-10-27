@@ -51,13 +51,6 @@ public class listado_docentes extends AppCompatActivity {
         rv_listado_docentes.setAdapter(listado_docentes_adaptador);
     }
 
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        startActivity(new Intent(listado_docentes.this, decano_gestion.class));
-        finish();
-
-    }
 
     public List<materia_modelo> obtener_docentes() {
         SQLiteDatabase bd = admin.getWritableDatabase();

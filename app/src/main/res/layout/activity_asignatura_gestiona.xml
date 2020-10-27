@@ -22,20 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <Button
-        android:id="@+id/btn_asignar_asignatura"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="24dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="crear_horario"
-        android:text="Matricular Asignatura"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_docente_gestiona" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_asignar_asignaturas"
@@ -44,9 +30,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="76dp"
         android:layout_marginRight="6dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_asignar_asignatura" />
+        app:layout_constraintTop_toBottomOf="@+id/text_docente_gestiona" />
 </androidx.constraintlayout.widget.ConstraintLayout>
