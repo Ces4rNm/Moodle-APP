@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,8 +11,8 @@ import android.view.View;
 
 import com.proyect.moodle.R;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
-import com.proyect.moodle.materia_modelo;
-import com.proyect.moodle.rv_listar_asignaturas_adaptador;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
+import com.proyect.moodle.Adapters.rv_listar_asignaturas_adaptador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +40,6 @@ public class listar_asignaturas extends AppCompatActivity {
             }
         });
         rv_listado_asignatura.setAdapter(listado_asignaturas_adaptador);
-    }
-
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        startActivity(new Intent(listar_asignaturas.this, decano_gestion.class));
-        finish();
-
     }
 
     public List<materia_modelo> obtener_asignaturas() {

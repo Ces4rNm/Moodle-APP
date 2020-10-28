@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.SQLite.Models;
 
 public class materia_modelo  {
     private String nombre, salon, hora;

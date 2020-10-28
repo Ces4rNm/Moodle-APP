@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.proyect.moodle.AppClass.GlobalInfo;
 import com.proyect.moodle.MainActivity;
 import com.proyect.moodle.R;
 
@@ -19,6 +22,21 @@ public class decano_gestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decano_gestion);
+
+        TextView tvRol = findViewById(R.id.tvRol);
+        if (GlobalInfo.Rol.equals("1")) {
+            //  Decano
+            tvRol.setText("Rol: Decano");
+        } else if (GlobalInfo.Rol.equals("2")) {
+            //  Docente
+            tvRol.setText("Rol: Docente");
+        } else {
+            tvRol.setText("Rol: Undefined");
+            Toast.makeText(this, "Error, ROL no definido:"+tvRol,Toast.LENGTH_SHORT).show();
+        }
+
+        TextView tvNombre = findViewById(R.id.tvNombreUsuario);
+        tvNombre.setText(GlobalInfo.Nombre);
 
         vibe = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
 
@@ -43,7 +61,7 @@ public class decano_gestion extends AppCompatActivity {
     }
 
     public void matricular_docentes(View view) {
-        Intent i = new Intent(this, listado_docentes.class );
+        Intent i = new Intent(this, crear_horario.class );
         startActivity(i);
     }
 

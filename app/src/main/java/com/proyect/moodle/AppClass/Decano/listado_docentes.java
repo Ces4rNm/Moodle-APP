@@ -12,22 +12,14 @@ import android.view.View;
 
 import com.proyect.moodle.R;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
-import com.proyect.moodle.materia_modelo;
-import com.proyect.moodle.rv_listado_docentes_adaptador;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
+import com.proyect.moodle.Adapters.rv_listado_docentes_adaptador;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class listado_docentes extends AppCompatActivity {
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
-
-    public void horario_docente(View view) {
-        Intent i = new Intent(this, asignatura_gestiona.class );
-        i.putExtra("ID_usuario", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getHora());
-        i.putExtra("nombre", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getNombre());
-        i.putExtra("facultad", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getSalon());
-        startActivity(i);
-    }
 
     private RecyclerView rv_listado_docentes;
     private rv_listado_docentes_adaptador listado_docentes_adaptador;
@@ -62,5 +54,13 @@ public class listado_docentes extends AppCompatActivity {
             } while (filas.moveToNext());
         }
         return docentes;
+    }
+
+    public void horario_docente(View view) {
+        Intent i = new Intent(this, asignatura_gestiona.class );
+        i.putExtra("ID_usuario", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getHora());
+        i.putExtra("nombre", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getNombre());
+        i.putExtra("facultad", obtener_docentes().get(rv_listado_docentes.getChildAdapterPosition(view)).getSalon());
+        startActivity(i);
     }
 }

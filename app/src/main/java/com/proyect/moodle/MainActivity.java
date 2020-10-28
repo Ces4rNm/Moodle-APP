@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.proyect.moodle.AppClass.Decano.decano_gestion;
 import com.proyect.moodle.AppClass.Docente.docente_gestion;
+import com.proyect.moodle.AppClass.GlobalInfo;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        GlobalInfo.Rol = "";
+        GlobalInfo.ID_usuario = "";
+        GlobalInfo.Nombre = "";
     }
 
     public void onBackPressed() {
@@ -43,11 +47,14 @@ public class MainActivity extends AppCompatActivity {
         String pass = tv_pass.getText().toString();
 
         if (!correo.equals("") || !pass.equals("")) {
-            Cursor fila = bd.rawQuery("select rol, ID_usuario from Usuario where usuario='"+correo+"' and password='"+pass+"';", null);
+            Cursor fila = bd.rawQuery("select rol, ID_usuario, nombre from Usuario where usuario='"+correo+"' and password='"+pass+"';", null);
             if (fila.moveToFirst()) {
                 if (fila.getString(0).equals("1")) {
                     //  Decano
                     Intent i = new Intent(this, decano_gestion.class );
+                    GlobalInfo.Rol = fila.getString(0);
+                    GlobalInfo.ID_usuario = fila.getString(1);
+                    GlobalInfo.Nombre = fila.getString(2);
                     startActivity(i);
                 } else if (fila.getString(0).equals("2")) {
                     //  Docente
@@ -56,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
                     if (enabled) {
                         Intent i = new Intent(this, docente_gestion.class );
-                        i.putExtra("ID_usuario", fila.getString(1));
+                        GlobalInfo.Rol = fila.getString(0);
+                        GlobalInfo.ID_usuario = fila.getString(1);
+                        GlobalInfo.Nombre = fila.getString(2);
                         startActivity(i);
                     } else{
                         Toast.makeText(getApplicationContext(),"Por favor, active el GPS para iniciar sesión", Toast.LENGTH_SHORT).show();

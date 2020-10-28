@@ -7,83 +7,73 @@
     tools:context=".AppClass.Decano.crear_horario">
 
 
-    <TextView
-        android:id="@+id/text_nuevo_horario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto_bold"
-        android:lineSpacingExtra="12sp"
-        android:text="NUEVO HORARIO"
-        android:textAlignment="center"
-        android:textColor="#707070"
-        android:textSize="30sp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="328dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Spinner
-        android:id="@+id/spinner_asignatura"
-        android:layout_width="311dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="38dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_nuevo_horario" />
-    <Spinner
-        android:id="@+id/spinner_semestre"
-        android:layout_width="311dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_asignatura" />
-    <Spinner
-        android:id="@+id/spinner_dia"
-        android:layout_width="311dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_semestre" />
-    <Spinner
-        android:id="@+id/spinner_hora"
-        android:layout_width="311dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_dia" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_salon"
-        android:layout_width="311dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="29dp"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:contentDescription="Salon"
-        android:ems="10"
-        android:hint="Salon"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_hora" />
+            <Spinner
+                android:id="@+id/spinner_docente"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="38dp" />
 
-    <Button
-        android:id="@+id/btn_asignar_asignatura2"
-        android:layout_width="213dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="38dp"
-        android:background="#BF0411"
-        android:fontFamily="@font/roboto_bold"
-        android:onClick="crear_horario"
-        android:text="Crear Nuevo Horario"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_salon" />
+            <Spinner
+                android:id="@+id/spinner_asignatura"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="38dp" />
+
+            <Spinner
+                android:id="@+id/spinner_semestre"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="29dp" />
+
+            <Spinner
+                android:id="@+id/spinner_dia"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="29dp" />
+
+            <Spinner
+                android:id="@+id/spinner_hora"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="29dp" />
+
+            <EditText
+                android:id="@+id/et_salon"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="14sp"
+                android:layout_marginTop="29dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:contentDescription="Salon"
+                android:ems="10"
+                android:hint="Salon"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btn_asignar_asignatura2"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="38dp"
+                android:background="#BF0411"
+                android:fontFamily="@font/roboto_bold"
+                android:onClick="crear_horario"
+                android:text="Matricular"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

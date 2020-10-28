@@ -18,22 +18,32 @@
             android:name=".AppClass.Docente.filtrar_horario"
             android:label="Filtrar Horario"></activity>
         <activity android:name=".AppClass.Decano.asignatura_gestiona" />
-        <activity android:name=".AppClass.Decano.listado_clases" />
-        <activity android:name=".AppClass.Decano.crear_horario" />
+        <activity
+            android:name=".AppClass.Decano.listado_clases"
+            android:label="Listado Clases"/>
+        <activity
+            android:name=".AppClass.Decano.crear_horario"
+            android:label="Nuevo Horario"/>
         <activity
             android:name=".AppClass.Docente.docente_gestion"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".AppClass.Decano.listar_asignaturas" />
-        <activity android:name=".AppClass.Decano.crear_asignatura" />
-        <activity android:name=".AppClass.Decano.listado_docentes" />
-        <activity android:name=".AppClass.Decano.crear_docente" />
+        <activity
+            android:name=".AppClass.Decano.listar_asignaturas"
+            android:label="Listado Asignaturas"/>
+        <activity
+            android:name=".AppClass.Decano.crear_asignatura"
+            android:label="Crear Asignatura"/>
+        <activity
+            android:name=".AppClass.Decano.listado_docentes"
+            android:label="Listado Docentes"/>
+        <activity
+            android:name=".AppClass.Decano.crear_docente"
+            android:label="Crear Docente"/>
         <activity
             android:name=".AppClass.Decano.decano_gestion"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".AppClass.Docente.clase_gestion" />
         <activity android:name=".AppClass.Docente.clase_activa" />
-        <activity android:name=".vista_semestre" />
-        <activity android:name=".vista_semana" />
         <activity
             android:name=".AppClass.Docente.vista_dia"
             android:label="Horario del día"/>

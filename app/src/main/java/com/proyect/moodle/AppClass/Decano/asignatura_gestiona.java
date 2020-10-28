@@ -4,17 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.proyect.moodle.R;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
-import com.proyect.moodle.materia_modelo;
-import com.proyect.moodle.rv_horario_docente_adaptador;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
+import com.proyect.moodle.Adapters.rv_horario_docente_adaptador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +28,7 @@ public class asignatura_gestiona extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignatura_gestiona);
 
-        TextView tv_titulo = findViewById(R.id.text_docente_gestiona);
-        tv_titulo.setText(getIntent().getExtras().getString("nombre")+" - "+getIntent().getExtras().getString("facultad"));
+        setTitle(getIntent().getExtras().getString("nombre")+" / Horarios ");
 
         rv_listado_horario = (RecyclerView)findViewById(R.id.rv_asignar_asignaturas);
         rv_listado_horario.setLayoutManager(new LinearLayoutManager(this));

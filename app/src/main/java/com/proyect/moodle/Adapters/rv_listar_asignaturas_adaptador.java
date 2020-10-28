@@ -1,9 +1,12 @@
-package com.proyect.moodle;
+package com.proyect.moodle.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
 
 import java.util.List;
 

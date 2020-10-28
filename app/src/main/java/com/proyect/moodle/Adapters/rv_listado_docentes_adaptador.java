@@ -1,15 +1,18 @@
-package com.proyect.moodle;
+package com.proyect.moodle.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.proyect.moodle.R;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
+
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class rv_horario_docente_adaptador extends RecyclerView.Adapter<rv_horario_docente_adaptador.ViewHolder> implements View.OnClickListener {
+public class rv_listado_docentes_adaptador extends RecyclerView.Adapter<rv_listado_docentes_adaptador.ViewHolder> implements View.OnClickListener {
     private View.OnClickListener listener;
 
     public void setOnClickListener(View.OnClickListener listener) {
@@ -36,14 +39,14 @@ public class rv_horario_docente_adaptador extends RecyclerView.Adapter<rv_horari
 
     public List<materia_modelo> semestre_Lista;
 
-    public rv_horario_docente_adaptador(List<materia_modelo> semestre_Lista) {
+    public rv_listado_docentes_adaptador(List<materia_modelo> semestre_Lista) {
         this.semestre_Lista = semestre_Lista;
     }
 
     @Override
-    public rv_horario_docente_adaptador.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public rv_listado_docentes_adaptador.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_materia,parent,false);
-        rv_horario_docente_adaptador.ViewHolder viewHolder = new rv_horario_docente_adaptador.ViewHolder(view);
+        rv_listado_docentes_adaptador.ViewHolder viewHolder = new rv_listado_docentes_adaptador.ViewHolder(view);
 
         view.setOnClickListener(this);
 
@@ -51,7 +54,7 @@ public class rv_horario_docente_adaptador extends RecyclerView.Adapter<rv_horari
     }
 
     @Override
-    public void onBindViewHolder(rv_horario_docente_adaptador.ViewHolder holder, int position) {
+    public void onBindViewHolder(rv_listado_docentes_adaptador.ViewHolder holder, int position) {
         holder.nombre.setText(semestre_Lista.get(position).getNombre());
         holder.salon.setText(semestre_Lista.get(position).getSalon());
         holder.hora.setText(semestre_Lista.get(position).getHora());

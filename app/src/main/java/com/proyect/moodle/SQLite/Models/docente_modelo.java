@@ -1,4 +1,4 @@
-package com.proyect.moodle;
+package com.proyect.moodle.SQLite.Models;
 
 public class docente_modelo {
     private int ID_usuario;
