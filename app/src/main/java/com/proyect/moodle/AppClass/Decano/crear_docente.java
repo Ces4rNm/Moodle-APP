@@ -1,18 +1,32 @@
 package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.proyect.moodle.AppClass.Docente.docente_gestion;
+import com.proyect.moodle.AppClass.GlobalInfo;
+import com.proyect.moodle.MainActivity;
 import com.proyect.moodle.R;
+import com.proyect.moodle.Retrofit.Interface.ApiInterface;
+import com.proyect.moodle.Retrofit.Model.ResData;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class crear_docente extends AppCompatActivity {
     EditText et_docente_ID_usuario,et_docente_nombre, et_docente_edad, et_docente_estudio, et_docente_usuario, et_docente_password, et_docente_falcultad;
@@ -50,47 +64,49 @@ public class crear_docente extends AppCompatActivity {
         if ((!documento.equals("") && !nombre.equals("") && !edad.equals("") && !estudio.equals("") && !usuario.equals("") && !password.equals("") && !facultad.equals(""))==false || (radioGroupSexo.getCheckedRadioButtonId()!=-1)==false) {
             Toast.makeText(this, "Complete el formulario del docente", Toast.LENGTH_SHORT).show();
         } else {
-            String sexo = "";
+            ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
 
+            String sexo = "";
             if (rbnM.isChecked()==true) {
                 sexo = "M";
             } else if (rbnF.isChecked()==true) {
                 sexo = "F";
             } else {
-                Toast.makeText(this, "Selecciona el sexo del docuente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Selecciona el sexo del docente", Toast.LENGTH_SHORT).show();
             }
 
-            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
-            SQLiteDatabase bd = admin.getWritableDatabase();
-            String rol = "2";
+            Call<ResData> response = API.serCrearUsuario(documento, nombre, edad, sexo, estudio, usuario, password, "2", facultad);
+            response.enqueue(new Callback<ResData>() {
+                @Override
+                public void onResponse(Call<ResData> call, Response<ResData> response) {
+                    if(response.isSuccessful()) {
+                        //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                        Log.d("Log",response.raw().toString());
+                        Log.d("Log JSON",response.body().toString());
+                        if (response.body().getCode().equals("0")) {
+                            et_docente_ID_usuario.setText("");
+                            et_docente_nombre.setText("");
+                            et_docente_edad.setText("");
+                            et_docente_estudio.setText("");
+                            et_docente_usuario.setText("");
+                            et_docente_password.setText("");
+                            et_docente_falcultad.setText("");
+                            rbnM.setChecked(false);
+                            rbnF.setChecked(false);
 
-            ContentValues registro = new ContentValues();
-
-            registro.put("ID_usuario", documento);
-            registro.put("nombre", nombre);
-            registro.put("edad", edad);
-            registro.put("sexo", sexo);
-            registro.put("estudios", estudio);
-            registro.put("usuario", usuario);
-            registro.put("password", password);
-            registro.put("facultad", facultad);
-            registro.put("rol", rol);
-
-            bd.insert("Usuario", null, registro);
-            bd.close();
-
-            et_docente_ID_usuario.setText("");
-            et_docente_nombre.setText("");
-            et_docente_edad.setText("");
-            et_docente_estudio.setText("");
-            et_docente_usuario.setText("");
-            et_docente_password.setText("");
-            et_docente_falcultad.setText("");
-            rbnM.setChecked(false);
-            rbnF.setChecked(false);
-
-            Toast.makeText(this, "Docente creado con exito",
-                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(crear_docente.this, "Docente creado con exito", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(crear_docente.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("notSuccessful", String.valueOf(response));
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResData> call, Throwable t) {
+                    Log.e("Error", t.getMessage());
+                }
+            });
         }
     }
 }

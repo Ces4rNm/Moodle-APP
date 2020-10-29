@@ -26,4 +26,8 @@ public interface ApiInterface {
     @POST("moodle/Consultas/validacionUsuario.php")
     @FormUrlEncoded
     Call<ResData> serLogin(@Field("correo") String correo, @Field("password") String password);
+
+    @POST("moodle/Consultas/insertarUsuario.php")
+    @FormUrlEncoded
+    Call<ResData> serCrearUsuario(@Field("ID_usuario") String ID_usuario, @Field("nombre") String nombre, @Field("edad") String edad, @Field("sexo") String sexo, @Field("estudios") String estudios, @Field("correo") String correo, @Field("password") String password, @Field("rol") String rol, @Field("facultad") String facultad);
 }
