@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proyect.moodle.AppClass.Decano.decano_gestion;
+import com.proyect.moodle.AppClass.Decano.listado_clases;
 import com.proyect.moodle.AppClass.GlobalInfo;
 import com.proyect.moodle.MainActivity;
 import com.proyect.moodle.R;
@@ -60,6 +61,11 @@ public class docente_gestion extends AppCompatActivity {
 
     public void filtrar_todos(View view) {
         Intent i = new Intent(this, filtrar_horario.class );
+        startActivity(i);
+    }
+
+    public void clases_gestionadas(View view) {
+        Intent i = new Intent(this, listado_clases.class );
         startActivity(i);
     }
 

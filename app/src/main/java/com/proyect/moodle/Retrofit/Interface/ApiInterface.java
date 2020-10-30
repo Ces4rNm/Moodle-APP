@@ -50,6 +50,22 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<ResData> serCrearAsignatura(@Field("nombre") String nombre, @Field("n_creditos") String n_creditos);
 
-    @GET("moodle/Consultas/listarClases.php")
+    @GET("moodle/Consultas/mostrarClases.php")
     Call<ResData> serListadoClases();
+
+    @POST("moodle/Consultas/mostrarHorarioDocente.php")
+    @FormUrlEncoded
+    Call<ResData> serListadoHorariosDocente(@Field("ID_usuario") String ID_usuario, @Field("dia") String dia, @Field("semestre") String semestre);
+
+    @POST("moodle/Consultas/definirClase.php")
+    @FormUrlEncoded
+    Call<ResData> serGestionarClase(@Field("ID_docente") String ID_docente, @Field("cod_asignatura") String cod_asignatura, @Field("descripcion") String descripcion, @Field("asistencia_profesor") String asistencia_profesor, @Field("estado") String estado);
+
+    @POST("moodle/Consultas/actualizarClase.php")
+    @FormUrlEncoded
+    Call<ResData> serActualizarClase(@Field("cod_clase") String cod_clase, @Field("estado") String estado);
+
+    @POST("moodle/Consultas/mostrarClasesDocente.php")
+    @FormUrlEncoded
+    Call<ResData> serListadoClasesDocente(@Field("ID_docente") String ID_docente);
 }

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.proyect.moodle.AppClass.GlobalInfo;
 import com.proyect.moodle.R;
 import com.proyect.moodle.Retrofit.Interface.ApiInterface;
 import com.proyect.moodle.Retrofit.Model.ResData;
@@ -59,9 +60,13 @@ public class listado_clases extends AppCompatActivity {
     public void obtener_clases() {
         clases.clear();
         listado_clases_adaptador.notifyDataSetChanged();
-
-        Call<ResData> response = API.serListadoClases();
-            response.enqueue(new Callback<ResData>() {
+        Call<ResData> response;
+        if (GlobalInfo.Rol.equals("2")) {
+            response = API.serListadoClasesDocente(GlobalInfo.ID_usuario);
+        } else {
+            response = API.serListadoClases();
+        }
+        response.enqueue(new Callback<ResData>() {
             @Override
             public void onResponse(Call<ResData> call, Response<ResData> response) {
                 if(response.isSuccessful()) {

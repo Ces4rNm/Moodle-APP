@@ -4,17 +4,25 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.proyect.moodle.AppClass.Decano.crear_asignatura;
+import com.proyect.moodle.AppClass.GlobalInfo;
 import com.proyect.moodle.R;
+import com.proyect.moodle.Retrofit.Interface.ApiInterface;
+import com.proyect.moodle.Retrofit.Model.ResData;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class clase_activa extends AppCompatActivity {
-    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+    ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,37 +43,35 @@ public class clase_activa extends AppCompatActivity {
     }
 
     public void terminar_clase(View view) {
-        SQLiteDatabase bd = admin.getWritableDatabase();
-
         String cod_clase = getIntent().getExtras().getString("cod_clase");
-
-        ContentValues registro = new ContentValues();
-
-        registro.put("estado", 2);
-
-        bd.update("Clase", registro, "cod_clase=" + cod_clase, null);
-//        Cursor fila = bd.rawQuery("select cod_clase, ID_docente, cod_asignatura, descripcion, asistencia_profesor, estado  from Clase where cod_clase="+cod_clase+";", null);
-//        if (fila.moveToFirst()) {
-//            Log.d("cod_clase: ", String.valueOf(fila.getString(0)));
-//            Log.d("ID_docente: ", String.valueOf(fila.getString(1)));
-//            Log.d("cod_asignatura: ", String.valueOf(fila.getString(2)));
-//            Log.d("descripcion: ", String.valueOf(fila.getString(3)));
-//            Log.d("asistencia_profesor: ", String.valueOf(fila.getString(4)));
-//            Log.d("estado: ", String.valueOf(fila.getString(5)));
-//        }
-
-        bd.close();
-
-        Toast.makeText(getApplicationContext(), "Clase finalizada", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, vista_dia.class);
-        i.putExtra("validadorSemana", "0");
-        i.putExtra("ID_usuario", getIntent().getExtras().getString("ID_usuario"));
-        startActivity(i);
+        Call<ResData> response = API.serActualizarClase(cod_clase, "2");
+        response.enqueue(new Callback<ResData>() {
+            @Override
+            public void onResponse(Call<ResData> call, Response<ResData> response) {
+                if(response.isSuccessful()) {
+                    //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                    Log.d("Log",response.raw().toString());
+                    Log.d("Log JSON",response.body().toString());
+                    if (response.body().getCode().equals("0")) {
+                        Toast.makeText(getApplicationContext(), "Clase finalizada", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(clase_activa.this, docente_gestion.class);
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(clase_activa.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("notSuccessful", String.valueOf(response));
+                }
+            }
+            @Override
+            public void onFailure(Call<ResData> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
+        });
     }
 
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "La clase debe ser finalizada", Toast.LENGTH_SHORT).show();
-
     }
 }
 

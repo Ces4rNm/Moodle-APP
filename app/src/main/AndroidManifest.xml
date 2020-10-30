@@ -44,8 +44,12 @@
         <activity
             android:name=".AppClass.Decano.decano_gestion"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".AppClass.Docente.clase_gestion" />
-        <activity android:name=".AppClass.Docente.clase_activa" />
+        <activity
+            android:name=".AppClass.Docente.clase_gestion"
+            android:label="Gestionar Clase"/>
+        <activity
+            android:name=".AppClass.Docente.clase_activa"
+            android:label="Clase Activa"/>
         <activity
             android:name=".AppClass.Docente.vista_dia"
             android:label="Horario del día"/>
