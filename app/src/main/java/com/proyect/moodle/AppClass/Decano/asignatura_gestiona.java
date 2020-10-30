@@ -3,25 +3,33 @@ package com.proyect.moodle.AppClass.Decano;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.proyect.moodle.R;
-import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.Retrofit.Interface.ApiInterface;
+import com.proyect.moodle.Retrofit.Model.ResData;
 import com.proyect.moodle.SQLite.Models.materia_modelo;
 import com.proyect.moodle.Adapters.rv_horario_docente_adaptador;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class asignatura_gestiona extends AppCompatActivity {
-    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
 
     private RecyclerView rv_listado_horario;
     private rv_horario_docente_adaptador listado_horario_adaptador;
+    List<materia_modelo> asignaturas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +41,8 @@ public class asignatura_gestiona extends AppCompatActivity {
         rv_listado_horario = (RecyclerView)findViewById(R.id.rv_asignar_asignaturas);
         rv_listado_horario.setLayoutManager(new LinearLayoutManager(this));
 
-        listado_horario_adaptador = new rv_horario_docente_adaptador(obtener_horarios());
+        listado_horario_adaptador = new rv_horario_docente_adaptador(asignaturas);
+        obtener_horarios();
         listado_horario_adaptador.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void  onClick(View view) {
@@ -44,17 +53,53 @@ public class asignatura_gestiona extends AppCompatActivity {
         rv_listado_horario.setAdapter(listado_horario_adaptador);
     }
 
-    public List<materia_modelo> obtener_horarios() {
-        SQLiteDatabase bd = admin.getWritableDatabase();
-        Cursor filas = bd.rawQuery("select b.dia_semana, b.hora, c.nombre " +
-                "from Usuario a, Horario b, Asignatura c " +
-                "where a.ID_usuario=b.ID_docente and b.cod_asignatura=c.cod_asignatura and a.ID_usuario="+getIntent().getExtras().getString("ID_usuario")+";", null);
-        List<materia_modelo> docentes = new ArrayList<>();
-        if(filas.moveToFirst()) {
-            do {
-                docentes.add(new materia_modelo( filas.getString(2),filas.getString(0),filas.getString(1)));
-            } while (filas.moveToNext());
-        }
-        return docentes;
+    public void obtener_horarios() {
+        asignaturas.clear();
+        listado_horario_adaptador.notifyDataSetChanged();
+
+        ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
+        Call<ResData> response = API.serListadoAsignaturasDocente(getIntent().getExtras().getString("ID_usuario"));
+        response.enqueue(new Callback<ResData>() {
+            @Override
+            public void onResponse(Call<ResData> call, Response<ResData> response) {
+                if(response.isSuccessful()) {
+                    //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                    Log.d("Log",response.raw().toString());
+                    Log.d("Log JSON",response.body().toString());
+                    if (response.body().getCode().equals("0")) {
+                        String data = response.body().getData();
+                        try {
+                            JSONArray jArray = new JSONArray(data);
+                            for (int i=0; i < jArray.length(); i++) {
+                                try {
+                                    JSONObject oneObject = jArray.getJSONObject(i);
+                                    // Pulling items from the array
+                                    String dia_semana = oneObject.getString("dia_semana");
+                                    String hora = oneObject.getString("hora");
+                                    String nombre = oneObject.getString("nombre");
+                                    asignaturas.add(new materia_modelo( nombre, dia_semana, hora));
+                                } catch (JSONException e) {
+                                    // Oops
+                                }
+                                if (i == (jArray.length()-1)) {
+                                    listado_horario_adaptador.notifyDataSetChanged();
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(asignatura_gestiona.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("notSuccessful", String.valueOf(response));
+                }
+            }
+            @Override
+            public void onFailure(Call<ResData> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
+        });
     }
 }

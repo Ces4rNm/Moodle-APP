@@ -29,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class crear_docente extends AppCompatActivity {
+    ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
+
     EditText et_docente_ID_usuario,et_docente_nombre, et_docente_edad, et_docente_estudio, et_docente_usuario, et_docente_password, et_docente_falcultad;
     RadioButton rbnM,rbnF;
     RadioGroup radioGroupSexo;
@@ -64,7 +66,6 @@ public class crear_docente extends AppCompatActivity {
         if ((!documento.equals("") && !nombre.equals("") && !edad.equals("") && !estudio.equals("") && !usuario.equals("") && !password.equals("") && !facultad.equals(""))==false || (radioGroupSexo.getCheckedRadioButtonId()!=-1)==false) {
             Toast.makeText(this, "Complete el formulario del docente", Toast.LENGTH_SHORT).show();
         } else {
-            ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
 
             String sexo = "";
             if (rbnM.isChecked()==true) {

@@ -1,12 +1,16 @@
 package com.proyect.moodle.AppClass.Decano;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -14,12 +18,19 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.proyect.moodle.R;
+import com.proyect.moodle.Retrofit.Interface.ApiInterface;
+import com.proyect.moodle.Retrofit.Model.ResData;
 import com.proyect.moodle.SQLite.AdminSQLiteOpenHelper;
+import com.proyect.moodle.SQLite.Models.materia_modelo;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class crear_horario extends AppCompatActivity {
-    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
+    ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
 
     Spinner docente, asignatura, semestre, dia, hora;
     String salon;
@@ -33,34 +44,97 @@ public class crear_horario extends AppCompatActivity {
         // Cargando Spinner docentes
         docente = findViewById(R.id.spinner_docente);
 
-        SQLiteDatabase bd2 = admin.getWritableDatabase();
-        Cursor filas2 = bd2.rawQuery("select ID_usuario, nombre, facultad from Usuario where rol='2';", null);
-
         listaDocentes = new ArrayList<>();
         listaDocentes.add("Seleccionar Docente");
 
-        if(filas2.moveToFirst()) {
-            do {
-                listaDocentes.add(filas2.getString(0)+" - "+filas2.getString(1));
-            } while (filas2.moveToNext());
-        }
+        Call<ResData> response = API.serListadoDocentes();
+        response.enqueue(new Callback<ResData>() {
+            @Override
+            public void onResponse(Call<ResData> call, Response<ResData> response) {
+                if(response.isSuccessful()) {
+                    //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                    Log.d("Log",response.raw().toString());
+                    Log.d("Log JSON",response.body().toString());
+                    if (response.body().getCode().equals("0")) {
+                        String data = response.body().getData();
+                        try {
+                            JSONArray jArray = new JSONArray(data);
+                            for (int i=0; i < jArray.length(); i++) {
+                                try {
+                                    JSONObject oneObject = jArray.getJSONObject(i);
+                                    // Pulling items from the array
+                                    String ID_usuario = oneObject.getString("ID_usuario");
+                                    String nombre = oneObject.getString("nombre");
+                                    String facultad = oneObject.getString("facultad");
+                                    listaDocentes.add(ID_usuario+" - "+nombre);
+                                } catch (JSONException e) {
+                                    // Oops
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(crear_horario.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("notSuccessful", String.valueOf(response));
+                }
+            }
+            @Override
+            public void onFailure(Call<ResData> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
+        });
 
         ArrayAdapter<CharSequence> adaptadorDocentes = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line, listaDocentes);
         docente.setAdapter(adaptadorDocentes);
         // Cargando Spinner asignatura
         asignatura = findViewById(R.id.spinner_asignatura);
 
-        SQLiteDatabase bd = admin.getWritableDatabase();
-        Cursor filas = bd.rawQuery("select cod_asignatura, nombre from Asignatura;", null);
-
         listaAsignaturas = new ArrayList<>();
         listaAsignaturas.add("Seleccionar Asignatura");
 
-        if(filas.moveToFirst()) {
-            do {
-                listaAsignaturas.add(filas.getString(0)+" - "+filas.getString(1));
-            } while (filas.moveToNext());
-        }
+        Call<ResData> response2 = API.serListadoAsignaturas();
+        response2.enqueue(new Callback<ResData>() {
+            @Override
+            public void onResponse(Call<ResData> call, Response<ResData> response) {
+                if(response.isSuccessful()) {
+                    //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                    Log.d("Log",response.raw().toString());
+                    Log.d("Log JSON",response.body().toString());
+                    if (response.body().getCode().equals("0")) {
+                        String data = response.body().getData();
+                        try {
+                            JSONArray jArray = new JSONArray(data);
+                            for (int i=0; i < jArray.length(); i++) {
+                                try {
+                                    JSONObject oneObject = jArray.getJSONObject(i);
+                                    // Pulling items from the array
+                                    String cod_asignatura = oneObject.getString("cod_asignatura");
+                                    String nombre = oneObject.getString("nombre");
+                                    listaAsignaturas.add(cod_asignatura+" - "+nombre);
+                                } catch (JSONException e) {
+                                    // Oops
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(crear_horario.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("notSuccessful", String.valueOf(response));
+                }
+            }
+            @Override
+            public void onFailure(Call<ResData> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
+        });
 
         ArrayAdapter<CharSequence> adaptadorAsignaturas = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,listaAsignaturas);
         asignatura.setAdapter(adaptadorAsignaturas);
@@ -125,23 +199,31 @@ public class crear_horario extends AppCompatActivity {
         if (selectAsignatura.equals("Seleccionar Asignatura") || selectSemestre.equals("Seleccionar Semestre")|| selectDia.equals("Seleccionar Dia")|| selectHora.equals("Seleccionar Hora") || salon.equals("")) {
             Toast.makeText(this, "Complete los campos para crear una asignatura", Toast.LENGTH_SHORT).show();
         } else {
+            Call<ResData> response3 = API.serMatricular(ID_docente, codigo1, selectSemestre, selectDia, selectHora, salon);
+            response3.enqueue(new Callback<ResData>() {
+                @Override
+                public void onResponse(Call<ResData> call, Response<ResData> response) {
+                    if(response.isSuccessful()) {
+                        //Log.e("TAG", "response: "+new Gson().toJson(response.body()));
+                        Log.d("Log",response.raw().toString());
+                        Log.d("Log JSON",response.body().toString());
+                        if (response.body().getCode().equals("0")) {
+                            Toast.makeText(crear_horario.this, "Horario creado con exito", Toast.LENGTH_SHORT).show();
 
-            ContentValues registro = new ContentValues();
-
-            registro.put("ID_docente", ID_docente);
-            registro.put("cod_asignatura", codigo1);
-            registro.put("semestre", selectSemestre);
-            registro.put("dia_semana", selectDia);
-            registro.put("hora", selectHora);
-            registro.put("salon", salon);
-            SQLiteDatabase bd = admin.getWritableDatabase();
-            bd.insert("Horario", null, registro);
-            bd.close();
-
-            Toast.makeText(this, "Horario creado con exito", Toast.LENGTH_SHORT).show();
-
-            Intent i = new Intent(this, decano_gestion.class);
-            startActivity(i);
+                            Intent i = new Intent(crear_horario.this, decano_gestion.class);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(crear_horario.this, "("+response.body().getCode()+") "+response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("notSuccessful", String.valueOf(response));
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResData> call, Throwable t) {
+                    Log.e("Error", t.getMessage());
+                }
+            });
         }
     }
 }

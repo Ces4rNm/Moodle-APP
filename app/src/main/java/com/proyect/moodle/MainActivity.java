@@ -25,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    ApiInterface API = ApiInterface.retrofit.create(ApiInterface.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         String pass = tv_pass.getText().toString();
 
         if (!correo.equals("") || !pass.equals("")) {
-            ApiInterface login = ApiInterface.retrofit.create(ApiInterface.class);
-            Call<ResData> response = login.serLogin(correo, pass);
+            Call<ResData> response = API.serLogin(correo, pass);
             response.enqueue(new Callback<ResData>() {
                 @Override
                 public void onResponse(Call<ResData> call, Response<ResData> response) {

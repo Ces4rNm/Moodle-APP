@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
@@ -30,4 +31,25 @@ public interface ApiInterface {
     @POST("moodle/Consultas/insertarUsuario.php")
     @FormUrlEncoded
     Call<ResData> serCrearUsuario(@Field("ID_usuario") String ID_usuario, @Field("nombre") String nombre, @Field("edad") String edad, @Field("sexo") String sexo, @Field("estudios") String estudios, @Field("correo") String correo, @Field("password") String password, @Field("rol") String rol, @Field("facultad") String facultad);
+
+    @GET("moodle/Consultas/mostrarDocentes.php")
+    Call<ResData> serListadoDocentes();
+
+    @POST("moodle/Consultas/mostrarAsignaturasDocente.php")
+    @FormUrlEncoded
+    Call<ResData> serListadoAsignaturasDocente(@Field("ID_usuario") String ID_usuario);
+
+    @GET("moodle/Consultas/mostrarAsignaturas.php")
+    Call<ResData> serListadoAsignaturas();
+
+    @POST("moodle/Consultas/crearHorario.php")
+    @FormUrlEncoded
+    Call<ResData> serMatricular(@Field("ID_docente") String ID_docente, @Field("cod_asignatura") String cod_asignatura, @Field("semestre") String semestre, @Field("dia_semana") String dia_semana, @Field("hora") String hora, @Field("salon") String salon);
+
+    @POST("moodle/Consultas/CrearAsignatura.php")
+    @FormUrlEncoded
+    Call<ResData> serCrearAsignatura(@Field("nombre") String nombre, @Field("n_creditos") String n_creditos);
+
+    @GET("moodle/Consultas/listarClases.php")
+    Call<ResData> serListadoClases();
 }
